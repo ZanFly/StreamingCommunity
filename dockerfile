@@ -31,7 +31,7 @@ RUN mkdir /var/run/sshd
 # RUN chown -R stcom /app/Video
 # Set root password for SSH access (change 'your_password' to your desired password)
 RUN echo 'root:stcom' | chpasswd
-RUN echo 'zander:stcom' | chpasswd
+RUN echo 'stcom:stcom' | chpasswd
 RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 EXPOSE 22
