@@ -17,15 +17,16 @@ RUN apt-get update && apt-get install -y \
     openssh-server    
 
 RUN pip install --no-cache-dir -r requirements.txt
+#---SSH PART---
 RUN adduser stcom
 RUN groupmod -g 100 users && usermod -u 1000 -g 100 stcom
 RUN addgroup ssh
 RUN usermod -aG ssh stcom
 RUN chown -R stcom /app
 RUN echo 'AllowGroups ssh' >> /etc/ssh/sshd_config
-RUN echo 'cd /app' >> /ssh/.bashrc
-RUN echo 'python3 test_run.py' >> /ssh/.bashrc
-RUN echo 'exit' >> /ssh/.bashrc
+RUN echo 'cd /app' >> /home/stcom/.bashrc
+RUN echo 'python3 test_run.py' >> /home/stcom/.bashrc
+RUN echo 'exit' >> /home/stcom/.bashrc
 RUN mkdir /var/run/sshd
 # RUN chown -R stcom /app/Video
 # Set root password for SSH access (change 'your_password' to your desired password)
